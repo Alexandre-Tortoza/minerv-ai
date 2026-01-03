@@ -41,3 +41,42 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+export interface Account {
+    id: number;
+    name: string;
+    type: 'checking' | 'savings' | 'credit_card' | 'cash' | 'investment';
+    balance_cents: number;
+    institution: string;
+}
+
+export interface Transaction {
+    id: number;
+    description: string;
+    amount_cents: number;
+    type: 'income' | 'expense' | 'transfer';
+    date: string;
+    account: string | null;
+    category: string | null;
+    is_paid: boolean;
+}
+
+export interface ExpenseByCategory {
+    category: string;
+    amount_cents: number;
+    color: string;
+}
+
+export interface DashboardStats {
+    total_balance_cents: number;
+    monthly_income_cents: number;
+    monthly_expenses_cents: number;
+    monthly_balance_cents: number;
+}
+
+export interface DashboardProps {
+    stats: DashboardStats;
+    accounts: Account[];
+    recent_transactions: Transaction[];
+    expenses_by_category: ExpenseByCategory[];
+}
