@@ -13,6 +13,9 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('chat', [\App\Http\Controllers\ChatController::class, 'index'])->name('chat');
+    Route::post('chat/send', [\App\Http\Controllers\ChatController::class, 'send'])->name('chat.send');
+    Route::post('chat/confirm-action', [\App\Http\Controllers\ChatController::class, 'confirmAction'])->name('chat.confirm');
 });
 
 require __DIR__.'/settings.php';
